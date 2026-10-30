@@ -1,0 +1,10 @@
+{
+  "architecture": "efficientnetb3",
+  "image_size": [
+    300,
+    300
+  ],
+  "preprocessing": "raw_0_255",
+  "task": "variety",
+  "bg_swap_prob": 0.6
+}

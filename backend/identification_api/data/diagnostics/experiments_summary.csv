@@ -1,0 +1,4 @@
+Experiment,Architecture,ImageSize,MeanAccuracy,MeanMacroF1,AvgTimePerEpochSec,TestImages
+combo_224,mobilenetv2,224x224,0.8636,0.8048,11.23,88
+res300_combo,mobilenetv2,300x300,0.8864,0.8315,19.39,88
+effb3_300,efficientnetb3,300x300,0.8750,0.8190,71.29,88

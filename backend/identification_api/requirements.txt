@@ -1,0 +1,12 @@
+fastapi==0.110.0
+uvicorn==0.28.0
+python-multipart==0.0.9
+tensorflow==2.16.1
+pillow==10.2.0
+numpy==1.26.4
+pandas==2.2.1
+scikit-learn==1.4.1.post1
+opencv-python-headless==4.10.0.84
+pillow-heif==0.18.0
+python-dotenv==1.0.1
+filelock>=3.13.1

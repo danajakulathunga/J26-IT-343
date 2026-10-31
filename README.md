@@ -1,4 +1,4 @@
-# BananaGuard AI 🍌 🛡️
+# **BananaGuard AI 🍌 🛡️**
 
 **AI-Based Fruit Defect and Disease Detection with Severity Assessment and Disease Cause Analysis using Computer Vision Platform for Sri Lankan Banana Cultivars**
 _Component 01 - R.K.M.D.V. Kulathunga (IT23288430)_
@@ -22,7 +22,23 @@ _Component 01 - R.K.M.D.V. Kulathunga (IT23288430)_
 
 ---
 
-## 1. Project Overview
+## **Table of Contents**
+
+- [1. Project Overview](#1-project-overview)
+- [2. System Architecture](#2-system-architecture)
+- [3. Technology Stack](#3-technology-stack)
+- [4. AI Models & Research Evaluation](#4-ai-models--research-evaluation)
+- [5. Project File Structure](#5-project-file-structure)
+- [6. Supported Conditions](#6-supported-conditions)
+- [7. Banana Subject-Matter Validation Workflow ★](#7-banana-subject-matter-validation-workflow)
+- [8. Setup & Execution Guide](#8-setup--execution-guide)
+- [9. Automated Testing](#9-automated-testing)
+- [10. Excluded from Git (Regeneratable Files)](#10-excluded-from-git-regeneratable-files)
+- [11. Ethical & Research Disclaimer](#11-ethical--research-disclaimer)
+
+---
+
+## **1. Project Overview**
 
 **BananaGuard AI** is an intelligent, full-stack mobile diagnostic platform designed to assist Sri Lankan banana farmers, agricultural extension officers, and quality assurance inspectors. The system automates:
 
@@ -34,7 +50,7 @@ _Component 01 - R.K.M.D.V. Kulathunga (IT23288430)_
 
 ---
 
-## 2. System Architecture
+## **2. System Architecture**
 
 ```mermaid
 flowchart TD
@@ -72,7 +88,7 @@ flowchart TD
 
 ---
 
-## 3. Technology Stack
+## **3. Technology Stack**
 
 ### Frontend (Flutter Mobile & Web)
 
@@ -121,7 +137,7 @@ flowchart TD
 
 ---
 
-## 4. AI Models & Research Evaluation
+## **4. AI Models & Research Evaluation**
 
 ### Diagnostic Classifier — EfficientNetB0 Multi-Head Architecture
 
@@ -218,7 +234,7 @@ flowchart TD
 
 ---
 
-## 5. Project File Structure
+## **5. Project File Structure**
 
 ```
 BananaGuard AI/
@@ -278,7 +294,7 @@ BananaGuard AI/
 
 ---
 
-## 6. Supported Conditions
+## **6. Supported Conditions**
 
 ### Target Conditions
 
@@ -307,7 +323,7 @@ BananaGuard AI/
 
 ---
 
-## 7. Banana Subject-Matter Validation Workflow ★
+## **7. Banana Subject-Matter Validation Workflow ★**
 
 ```mermaid
 flowchart TD
@@ -332,7 +348,7 @@ flowchart TD
 
 ---
 
-## 8. Setup & Execution Guide
+## **8. Setup & Execution Guide**
 
 ### Prerequisites
 
@@ -462,7 +478,7 @@ flutter build apk --release
 
 ---
 
-## 9. Automated Testing
+## **9. Automated Testing**
 
 ### Backend Unit & Integration Tests (pytest)
 
@@ -493,7 +509,7 @@ _26 / 26 test suites passing:_
 
 ---
 
-## 10. Excluded from Git (Regeneratable Files)
+## **10. Excluded from Git (Regeneratable Files)**
 
 The following files and folders are listed in `.gitignore` because they are either **too large for GitHub**, **auto-generated at runtime**, or **recreatable with a single command**. They are **not committed to the repository**.
 
@@ -527,6 +543,6 @@ The following files and folders are listed in `.gitignore` because they are eith
 
 ---
 
-## 11. Ethical & Research Disclaimer
+## **11. Ethical & Research Disclaimer**
 
 BananaGuard AI is an automated decision-support system designed for undergraduate research and agricultural extension advisory assistance. Automated diagnostic outputs and chemical treatment recommendations should be verified by certified agricultural officers before undertaking large-scale crop interventions.

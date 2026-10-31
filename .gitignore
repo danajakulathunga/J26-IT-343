@@ -15,6 +15,10 @@ venv/
 .venv/
 env/
 ENV/
+# Nested venvs (e.g. backend/identification_api/.venv/)
+**/.venv/
+**/venv/
+**/env/
 
 # ── Environment / Secrets ────────────────────────────────────
 .env
@@ -84,6 +88,12 @@ build/
 .pub/
 *.apk
 *.aab
+
+# ── Android ──────────────────────────────────────────────────
+android/.gradle/
+android/local.properties
+android/key.properties
+**/.gradle/
 
 # ── IDE & OS ─────────────────────────────────────────────────
 .idea/

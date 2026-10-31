@@ -1,0 +1,70 @@
+# ============================================================
+# BananaGuard AI — Backend .gitignore
+# ============================================================
+
+# ── Virtual Environments ─────────────────────────────────────
+venv/
+.venv/
+env/
+
+# ── Python Cache ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyc
+
+# ── Secrets ──────────────────────────────────────────────────
+.env
+!.env.example
+*.env.*
+
+# ── Database ─────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── ML Models ────────────────────────────────────────────────
+ml/models/*.h5
+ml/models/*.pt
+ml/models/*.pth
+ml/models/*.onnx
+ml/models/*.tflite
+!ml/models/.gitkeep
+
+# ── Storage (runtime generated) ──────────────────────────────
+storage/scans/
+storage/*.pdf
+storage/*.png
+storage/*.jpg
+storage/*.jpeg
+storage/test_*
+!storage/.gitkeep
+
+# ── HuggingFace & Torch Caches ───────────────────────────────
+.cache/
+hf_cache/
+transformers_cache/
+torch_cache/
+
+# ── Test Artifacts ───────────────────────────────────────────
+.pytest_cache/
+.coverage
+test_output.*
+*.log
+*.tmp
+*~
+*.swp
+
+# ── Root-level generated test images/PDFs ────────────────────
+test_*.png
+test_*.pdf
+test_*.jpg
+test_*.jpeg
+
+# ── Scratch folder (temporary working files) ─────────────────
+scratch/
+!scratch/.gitkeep
+
+# ── Backup Files ─────────────────────────────────────────────
+*_backup.*
+*.bak
+

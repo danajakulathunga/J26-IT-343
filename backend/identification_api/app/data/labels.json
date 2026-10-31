@@ -1,0 +1,19 @@
+[
+  {"id": 0, "name": "healthy", "type": "Healthy"},
+  {"id": 1, "name": "anthracnose", "type": "Disease"},
+  {"id": 2, "name": "crown_rot", "type": "Disease"},
+  {"id": 3, "name": "finger_rot", "type": "Disease"},
+  {"id": 4, "name": "black_end_rot", "type": "Disease"},
+  {"id": 5, "name": "bacterial_soft_rot", "type": "Disease"},
+  {"id": 6, "name": "fusarium_rot", "type": "Disease"},
+  {"id": 7, "name": "bruising", "type": "Defect"},
+  {"id": 8, "name": "physical_damage", "type": "Defect"},
+  {"id": 9, "name": "black_spots", "type": "Defect"},
+  {"id": 10, "name": "scarring", "type": "Defect"},
+  {"id": 11, "name": "skin_splitting", "type": "Defect"},
+  {"id": 12, "name": "insect_damage", "type": "Defect"},
+  {"id": 13, "name": "deformation", "type": "Defect"},
+  {"id": 14, "name": "wrinkling", "type": "Defect"},
+  {"id": 15, "name": "sunburn", "type": "Defect"},
+  {"id": 16, "name": "sap_latex_stain", "type": "Defect"}
+]

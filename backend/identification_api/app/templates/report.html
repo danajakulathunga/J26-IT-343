@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BananaGuard AI - Diagnostic Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 16mm 18mm 16mm;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: 'Inter', 'Noto Sans Sinhala', 'Noto Sans Tamil', sans-serif;
+                font-size: 8pt;
+                color: #6b7280;
+            }
+            @bottom-left {
+                content: "BananaGuard AI • University Research Diagnostic";
+                font-family: 'Inter', sans-serif;
+                font-size: 8pt;
+                color: #6b7280;
+            }
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Sinhala', 'Noto Sans Tamil', 'DejaVu Sans', sans-serif;
+            color: #1f2937;
+            margin: 0;
+            padding: 0;
+            font-size: 10pt;
+            line-height: 1.45;
+        }
+
+        .header-table {
+            width: 100%;
+            border-bottom: 2px solid #2e7d32;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .brand-title {
+            font-size: 20pt;
+            font-weight: 800;
+            color: #1b5e20;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subtitle {
+            font-size: 9pt;
+            color: #4b5563;
+            margin: 2px 0 0 0;
+        }
+
+        .meta-text {
+            text-align: right;
+            font-size: 8.5pt;
+            color: #4b5563;
+            line-height: 1.35;
+        }
+
+        .demo-banner {
+            background-color: #fffbeb;
+            border: 1px solid #f59e0b;
+            color: #b45309;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 9pt;
+            font-weight: 600;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .patient-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            display: table;
+            width: 100%;
+        }
+
+        .patient-cell {
+            display: table-cell;
+            width: 33.3%;
+            vertical-align: top;
+        }
+
+        .cell-label {
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .cell-val {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* Images Side by Side */
+        .images-container {
+            width: 100%;
+            margin-bottom: 16px;
+            display: table;
+            table-layout: fixed;
+        }
+
+        .image-box {
+            display: table-cell;
+            width: 48%;
+            text-align: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #d1d5db;
+            vertical-align: middle;
+            height: 220px;
+        }
+
+        .image-spacing {
+            display: table-cell;
+            width: 4%;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            max-height: 220px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-caption {
+            font-size: 8pt;
+            font-weight: 600;
+            color: #4b5563;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        /* Results Card */
+        .results-summary {
+            background-color: #f0fdf4;
+            border: 1.5px solid #86efac;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+        }
+
+        .condition-title {
+            font-size: 14pt;
+            font-weight: 800;
+            color: #14532d;
+            margin: 0 0 2px 0;
+        }
+
+        .condition-si {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #166534;
+            margin: 0 0 6px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            font-size: 7.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-right: 6px;
+        }
+
+        .badge-disease { background-color: #fee2e2; color: #991b1b; }
+        .badge-defect { background-color: #fef3c7; color: #92400e; }
+        .badge-healthy { background-color: #dcfce7; color: #166534; }
+
+        .metrics-grid {
+            display: table;
+            width: 100%;
+            margin-top: 10px;
+            border-top: 1px dashed #bbf7d0;
+            padding-top: 8px;
+        }
+
+        .metric-cell {
+            display: table-cell;
+            width: 25%;
+            vertical-align: top;
+        }
+
+        .gauge-bar-outer {
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            height: 9px;
+            width: 85%;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+
+        .gauge-bar-inner {
+            height: 100%;
+            background-color: #f59e0b;
+        }
+
+        /* Cause and Recommendations */
+        .section-header {
+            font-size: 10.5pt;
+            font-weight: 800;
+            color: #1f2937;
+            border-bottom: 1.5px solid #e5e7eb;
+            padding-bottom: 4px;
+            margin: 14px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .list-item {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .list-num {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .item-en {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .item-si {
+            color: #4b5563;
+            font-size: 9pt;
+            margin-top: 1px;
+        }
+
+        /* Quality Warnings */
+        .warning-box {
+            background-color: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 8px 12px;
+            margin-top: 12px;
+            font-size: 8.5pt;
+            color: #9a3412;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Disclaimer */
+        .disclaimer-box {
+            margin-top: 18px;
+            padding: 8px 12px;
+            background-color: #f3f4f6;
+            border-radius: 6px;
+            font-size: 8pt;
+            color: #6b7280;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <table class="header-table">
+        <tr>
+            <td style="vertical-align: middle;">
+                <div class="brand-title">BananaGuard AI</div>
+                <div class="brand-subtitle">Automated Defect, Disease & Severity Diagnostic Platform</div>
+            </td>
+            <td class="meta-text" style="vertical-align: middle;">
+                <div><strong>Scan ID:</strong> {{ scan_id }}</div>
+                <div><strong>Date & Time:</strong> {{ created_at }}</div>
+                <div><strong>Inference Mode:</strong> {{ mode|upper }}</div>
+            </td>
+        </tr>
+    </table>
+
+    {% if mode == 'demo' %}
+    <div class="demo-banner">
+        ⚠️ DEMO MODE NOTICE: Model is not trained yet. Diagnostic is generated using demo heuristics and SHA-256 deterministic seeding.
+    </div>
+    {% endif %}
+
+    <!-- User & Variety Metadata -->
+    <div class="patient-card">
+        <div class="patient-cell">
+            <div class="cell-label">Client / User</div>
+            <div class="cell-val">{{ client_name }}</div>
+        </div>
+        <div class="patient-cell">
+            <div class="cell-label">Banana Variety</div>
+            <div class="cell-val">
+                {% if variety %}
+                    {{ variety.en }} ({{ variety.si }})
+                {% else %}
+                    Unspecified / Not Sure
+                {% endif %}
+            </div>
+        </div>
+        <div class="patient-cell">
+            <div class="cell-label">Inspection Category</div>
+            <div class="cell-val">{{ condition.type }}</div>
+        </div>
+    </div>
+
+    <!-- Images Side by Side -->
+    <div class="images-container">
+        <div class="image-box">
+            <img src="{{ original_data_url }}" alt="Uploaded Banana Image">
+        </div>
+        <div class="image-spacing"></div>
+        <div class="image-box">
+            <img src="{{ gradcam_data_url }}" alt="Grad-CAM Highlighted Image">
+        </div>
+    </div>
+    <table style="width: 100%; margin-top: -10px; margin-bottom: 12px;">
+        <tr>
+            <td style="width: 48%; text-align: center;" class="image-caption">Full Original Image (Uncropped)</td>
+            <td style="width: 4%;"></td>
+            <td style="width: 48%; text-align: center;" class="image-caption">Saliency / Grad-CAM Attention Heat-Map & Region</td>
+        </tr>
+    </table>
+
+    <!-- Diagnosis Result -->
+    <div class="results-summary">
+        <div>
+            {% if condition.type == 'Disease' %}
+                <span class="badge badge-disease">Disease</span>
+            {% elif condition.type == 'Defect' %}
+                <span class="badge badge-defect">Defect</span>
+            {% else %}
+                <span class="badge badge-healthy">Healthy</span>
+            {% endif %}
+        </div>
+
+        <div class="condition-title">{{ condition.en }}</div>
+        <div class="condition-si">{{ condition.si }}</div>
+        {% if condition.description_si %}
+            <div style="font-size: 8.5pt; color: #166534; margin-bottom: 6px;">{{ condition.description_si }}</div>
+        {% endif %}
+
+        <div class="metrics-grid">
+            <div class="metric-cell">
+                <div class="cell-label">Condition Confidence</div>
+                <div class="cell-val">{{ (condition_confidence * 100)|round(1) }}%</div>
+            </div>
+            <div class="metric-cell">
+                <div class="cell-label">Severity Level</div>
+                <div class="cell-val">
+                    {% if severity %}
+                        {{ severity.en }} ({{ severity.si }})
+                    {% else %}
+                        None (Healthy)
+                    {% endif %}
+                </div>
+            </div>
+            <div class="metric-cell">
+                <div class="cell-label">Severity Confidence</div>
+                <div class="cell-val">
+                    {% if severity_confidence is not none %}
+                        {{ (severity_confidence * 100)|round(1) }}%
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </div>
+            </div>
+            <div class="metric-cell">
+                <div class="cell-label">Severity Index (0-100)</div>
+                <div class="cell-val">{{ severity_index }} / 100</div>
+                <div class="gauge-bar-outer">
+                    <div class="gauge-bar-inner" style="width: {{ severity_index }}%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cause Factors -->
+    <div class="section-header">Primary Cause Factors / ප්‍රධාන හේතු සාධක</div>
+    {% for factor in cause_factors %}
+    <div class="list-item">
+        <span class="list-num">{{ loop.index }}.</span>
+        <div class="item-en">{{ factor.en }}</div>
+        <div class="item-si">{{ factor.si }}</div>
+    </div>
+    {% endfor %}
+
+    <!-- Recommendations -->
+    <div class="section-header" style="margin-top: 14px;">Recommended Actions / නිර්දේශිත ක්‍රියාමාර්ග</div>
+    {% for rec in recommendations %}
+    <div class="list-item">
+        <span class="list-num">{{ loop.index }}.</span>
+        <div class="item-en">{{ rec.en }}</div>
+        <div class="item-si">{{ rec.si }}</div>
+    </div>
+    {% endfor %}
+
+    {% if quality_warnings %}
+    <div class="warning-box">
+        <strong>Quality Advisory:</strong>
+        {% for w in quality_warnings %}
+            <div>• {{ w.en }} ({{ w.si }})</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Decision Support Disclaimer -->
+    <div class="disclaimer-box">
+        <div><strong>Disclaimer:</strong> {{ disclaimer.en }}</div>
+        <div style="margin-top: 2px;">{{ disclaimer.si }}</div>
+    </div>
+
+</body>
+</html>

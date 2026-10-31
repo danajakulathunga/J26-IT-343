@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: bananaguard-ai
+    runtime: docker
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    plan: free
+    region: singapore
+    envVars:
+      - key: MODEL_MODE
+        value: demo
+      - key: JWT_SECRET
+        value: banana-guard-research-secret-key-32-chars-min!

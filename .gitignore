@@ -1,0 +1,98 @@
+# ============================================================
+# BananaGuard AI — Root .gitignore
+# ============================================================
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+
+# ── Virtual Environments ─────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment / Secrets ────────────────────────────────────
+.env
+!.env.example
+*.env.*
+
+# ── Database Files ───────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── ML Model Files (too large for GitHub — see README) ───────
+backend/identification_api/ml/models/*.h5
+backend/identification_api/ml/models/*.pt
+backend/identification_api/ml/models/*.pth
+backend/identification_api/ml/models/*.onnx
+backend/identification_api/ml/models/*.tflite
+backend/identification_api/ml/models/*.bin
+backend/identification_api/ml/models/*.safetensors
+!backend/identification_api/ml/models/.gitkeep
+
+# ── Storage (runtime generated — user uploads & reports) ─────
+backend/identification_api/storage/scans/
+backend/identification_api/storage/*.pdf
+backend/identification_api/storage/*.png
+backend/identification_api/storage/*.jpg
+backend/identification_api/storage/*.jpeg
+backend/identification_api/storage/test_*
+!backend/identification_api/storage/.gitkeep
+
+# ── HuggingFace & Torch Model Caches ─────────────────────────
+.cache/
+hf_cache/
+transformers_cache/
+torch_cache/
+
+# ── Test / Temp Artifacts ────────────────────────────────────
+test_output.*
+*.log
+*.tmp
+*~
+*.swp
+
+# ── Backend: Root-level generated test images/PDFs ───────────
+backend/identification_api/test_*.png
+backend/identification_api/test_*.pdf
+backend/identification_api/test_*.jpg
+backend/identification_api/test_*.jpeg
+
+# ── Backend: Scratch folder (temporary working files) ─────────
+backend/identification_api/scratch/
+!backend/identification_api/scratch/.gitkeep
+
+# ── Python Test Cache ────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# ── Flutter / Dart ───────────────────────────────────────────
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+*.apk
+*.aab
+
+# ── IDE & OS ─────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Docker ───────────────────────────────────────────────────
+*.override.yml
+

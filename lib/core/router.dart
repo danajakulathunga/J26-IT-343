@@ -55,15 +55,24 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/sign-in',
-      builder: (context, state) => const SignInScreen(),
+      pageBuilder: (context, state) => _quickPage(
+        key: state.pageKey,
+        child: const SignInScreen(),
+      ),
     ),
     GoRoute(
       path: '/sign-up',
-      builder: (context, state) => const SignUpScreen(),
+      pageBuilder: (context, state) => _quickPage(
+        key: state.pageKey,
+        child: const SignUpScreen(),
+      ),
     ),
     GoRoute(
       path: '/forgot-password',
-      builder: (context, state) => const ForgotPasswordScreen(),
+      pageBuilder: (context, state) => _quickPage(
+        key: state.pageKey,
+        child: const ForgotPasswordScreen(),
+      ),
     ),
     GoRoute(
       path: '/reset-password',
@@ -74,7 +83,10 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/guest-name',
-      builder: (context, state) => const GuestNameScreen(),
+      pageBuilder: (context, state) => _quickPage(
+        key: state.pageKey,
+        child: const GuestNameScreen(),
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

@@ -25,98 +25,191 @@ class AuthLandingScreen extends ConsumerWidget {
         : (lang == 'ta' ? 'விருந்தினராக தொடரவும்' : 'Continue as Guest');
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: Column(
-            children: [
-              const Spacer(),
-              // Banana Mascot / Icon
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  color: AppConstants.accentYellow.withOpacity(0.18),
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.eco_rounded,
-                    size: 56,
-                    color: AppConstants.primaryGreen,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              Text(
-                'BananaGuard AI',
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: -0.5,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  subtitleText,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.textTheme.bodyMedium?.color?.withOpacity(0.75),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              const Spacer(),
-              // 1. Sign In Button
-              ElevatedButton(
-                onPressed: () => context.push('/sign-in'),
-                child: Text(signInText),
-              ),
-              const SizedBox(height: 12),
-              // 2. Sign Up Button (Outlined)
-              OutlinedButton(
-                onPressed: () => context.push('/sign-up'),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 52),
-                  side: const BorderSide(color: AppConstants.primaryGreen, width: 1.5),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: Text(
-                  signUpText,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: AppConstants.primaryGreen,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              // 3. Continue as Guest
-              TextButton(
-                onPressed: () => context.push('/guest-name'),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.flash_on_rounded, size: 18, color: AppConstants.accentYellow),
-                    const SizedBox(width: 6),
-                    Text(
-                      guestText,
-                      style: const TextStyle(
-                        fontSize: 14.5,
-                        fontWeight: FontWeight.w700,
-                        color: AppConstants.primaryGreen,
-                      ),
-                    ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // 1. Full-screen background image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/bg_image.jpg',
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
+          ),
+
+          // 2. White color fadeout gradient overlay (matching modern landing design)
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [0.0, 0.30, 0.48, 0.68, 1.0],
+                  colors: [
+                    Colors.transparent,
+                    Colors.transparent,
+                    Colors.white.withOpacity(0.40),
+                    Colors.white.withOpacity(0.92),
+                    Colors.white,
                   ],
                 ),
               ),
-              const SizedBox(height: 12),
-            ],
+            ),
           ),
-        ),
+
+          // 3. Foreground content pushed to bottom over the white fadeout section
+          SafeArea(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        child: Column(
+                          children: [
+                            const Spacer(),
+
+                            // Sleek brand mascot / eco badge
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppConstants.accentYellow.withOpacity(0.22),
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.06),
+                                    blurRadius: 12,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.eco_rounded,
+                                  size: 34,
+                                  color: AppConstants.primaryGreen,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 18),
+
+                            // Main Title
+                            Text(
+                              'BananaGuard AI',
+                              style: theme.textTheme.headlineMedium?.copyWith(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: -0.6,
+                                color: const Color(0xFF0F172A),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 8),
+
+                            // Subtitle description
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              child: Text(
+                                subtitleText,
+                                style: const TextStyle(
+                                  fontSize: 14.5,
+                                  height: 1.45,
+                                  color: Color(0xFF475569),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(height: 28),
+
+                            // 1. Sign In Button
+                            ElevatedButton(
+                              onPressed: () => context.push('/sign-in'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppConstants.primaryGreen,
+                                foregroundColor: Colors.white,
+                                elevation: 2,
+                                shadowColor: AppConstants.primaryGreen.withOpacity(0.35),
+                                minimumSize: const Size(double.infinity, 54),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                textStyle: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                              child: Text(signInText),
+                            ),
+                            const SizedBox(height: 12),
+
+                            // 2. Sign Up Button (Outlined)
+                            OutlinedButton(
+                              onPressed: () => context.push('/sign-up'),
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white.withOpacity(0.9),
+                                foregroundColor: AppConstants.primaryGreen,
+                                minimumSize: const Size(double.infinity, 54),
+                                side: const BorderSide(color: AppConstants.primaryGreen, width: 1.6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              child: Text(
+                                signUpText,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppConstants.primaryGreen,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 14),
+
+                            // 3. Continue as Guest
+                            TextButton(
+                              onPressed: () => context.push('/guest-name'),
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.flash_on_rounded,
+                                    size: 18,
+                                    color: AppConstants.accentYellow,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    guestText,
+                                    style: const TextStyle(
+                                      fontSize: 14.5,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppConstants.primaryGreen,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

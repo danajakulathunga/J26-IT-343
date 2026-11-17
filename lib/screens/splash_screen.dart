@@ -74,32 +74,16 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
-          // ── Layer 1: Base botanical gradient ──────────────────────────────
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF2D5016), // Deep forest top-left
-                  Color(0xFF1B5E20), // Brand green mid
-                  Color(0xFF0F3D18), // Rich botanical dark bottom-right
-                ],
-                stops: [0.0, 0.50, 1.0],
-              ),
-            ),
-          ),
-
-          // ── Layer 2: Organic blob shapes (CustomPaint) ───────────────────
+          // ── Background Image: splash_bg.jpg ─────────────────────────────
           Positioned.fill(
-            child: CustomPaint(
-              painter: _BotanicalBlobPainter(),
+            child: Image.asset(
+              'assets/images/splash_bg.jpg',
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
             ),
           ),
 
-          // ── Layer 3: All existing content — untouched ─────────────────────
+          // ── Splash Content ──────────────────────────────────────────────
           SafeArea(
             child: Stack(
               children: [
@@ -185,107 +169,4 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
       ),
     );
   }
-}
-
-// ── Botanical Organic Blob Painter ─────────────────────────────────────────────
-// Large blurred organic circles positioned around the screen to give a
-// botanical / leaf-texture depth effect that matches bg_image.jpg green tones.
-// No animation, no external packages — pure Flutter CustomPainter.
-class _BotanicalBlobPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Blob 1 — Large light-green arc, top-left bleeding off-screen
-    // Mimics the lighter foliage highlights at the top of bg_image.jpg
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * -0.08, size.height * 0.12),
-      radiusX: size.width * 0.72,
-      radiusY: size.width * 0.72,
-      color: const Color(0xFF4CAF50),
-      opacity: 0.14,
-      blur: 70,
-    );
-
-    // Blob 2 — Dark botanical blob, top-right corner
-    // Gives shadow depth similar to the dark foliage edges in bg_image.jpg
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * 1.12, size.height * 0.08),
-      radiusX: size.width * 0.58,
-      radiusY: size.width * 0.58,
-      color: const Color(0xFF1A3A0D),
-      opacity: 0.55,
-      blur: 55,
-    );
-
-    // Blob 3 — Mid botanical oval, left-center
-    // Adds organic mid-screen texture depth
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * 0.08, size.height * 0.52),
-      radiusX: size.width * 0.55,
-      radiusY: size.height * 0.22,
-      color: const Color(0xFF558B2F),
-      opacity: 0.18,
-      blur: 65,
-    );
-
-    // Blob 4 — Warm banana-yellow subtle glow, center-bottom
-    // The warm accent that ties to accentYellow and the warm light in bg_image
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * 0.5, size.height * 0.88),
-      radiusX: size.width * 0.58,
-      radiusY: size.width * 0.38,
-      color: const Color(0xFFEAB308),
-      opacity: 0.07,
-      blur: 90,
-    );
-
-    // Blob 5 — Mid-green oval, bottom-right bleeding off-screen
-    // Anchors the lower palette to match bg_image botanical lower tones
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * 1.08, size.height * 0.78),
-      radiusX: size.width * 0.62,
-      radiusY: size.height * 0.25,
-      color: const Color(0xFF3B7A1A),
-      opacity: 0.22,
-      blur: 58,
-    );
-
-    // Blob 6 — Small bright accent blob, center-right mid
-    // Adds a subtle luminosity highlight for depth
-    _drawBlob(
-      canvas,
-      center: Offset(size.width * 0.88, size.height * 0.42),
-      radiusX: size.width * 0.28,
-      radiusY: size.width * 0.28,
-      color: const Color(0xFF66BB6A),
-      opacity: 0.10,
-      blur: 45,
-    );
-  }
-
-  void _drawBlob(
-    Canvas canvas, {
-    required Offset center,
-    required double radiusX,
-    required double radiusY,
-    required Color color,
-    required double opacity,
-    required double blur,
-  }) {
-    final paint = Paint()
-      ..color = color.withOpacity(opacity)
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, blur);
-
-    canvas.drawOval(
-      Rect.fromCenter(center: center, width: radiusX * 2, height: radiusY * 2),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

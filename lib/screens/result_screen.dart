@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -209,22 +210,25 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
     }
 
     if (_isLoading) {
-      return PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          if (!didPop) navigateToHome();
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              tooltip: backTooltip,
-              onPressed: navigateToHome,
+      return BotanicalBackground(
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) navigateToHome();
+          },
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                tooltip: backTooltip,
+                onPressed: navigateToHome,
+              ), 
+              title: Text(titleText),
             ),
-            title: Text(titleText),
-          ),
-          body: const Center(
-            child: CircularProgressIndicator(color: AppConstants.accentYellow),
+            body: const Center(
+              child: CircularProgressIndicator(color: AppConstants.accentYellow),
+            ),
           ),
         ),
       );
@@ -241,43 +245,46 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
           ? 'නැවත උත්සාහ කරන්න'
           : (lang == 'ta' ? 'மீண்டும் முயற்சிக்கவும்' : 'Retry');
 
-      return PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          if (!didPop) navigateToHome();
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              tooltip: backTooltip,
-              onPressed: navigateToHome,
+      return BotanicalBackground(
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) navigateToHome();
+          },
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                tooltip: backTooltip,
+                onPressed: navigateToHome,
+              ),
+              title: Text(titleText),
             ),
-            title: Text(titleText),
-          ),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.info_outline, size: 48, color: Colors.grey),
-                  const SizedBox(height: 12),
-                  Text(noResultText, textAlign: TextAlign.center),
-                  const SizedBox(height: 16),
-                  if (widget.scanId != null) ...[
-                    ElevatedButton.icon(
-                      onPressed: () => _fetchScan(widget.scanId!),
-                      icon: const Icon(Icons.refresh),
-                      label: Text(retryText),
-                    ),
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.info_outline, size: 48, color: Colors.grey),
                     const SizedBox(height: 12),
+                    Text(noResultText, textAlign: TextAlign.center),
+                    const SizedBox(height: 16),
+                    if (widget.scanId != null) ...[
+                      ElevatedButton.icon(
+                        onPressed: () => _fetchScan(widget.scanId!),
+                        icon: const Icon(Icons.refresh),
+                        label: Text(retryText),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                    OutlinedButton(
+                      onPressed: navigateToHome,
+                      child: Text(goHomeText),
+                    ),
                   ],
-                  OutlinedButton(
-                    onPressed: navigateToHome,
-                    child: Text(goHomeText),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -290,13 +297,15 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
         ? 'වාර්තාව බෙදාගන්න'
         : (lang == 'ta' ? 'அறிக்கையைப் பகிரவும்' : 'Share report');
 
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (!didPop) navigateToHome();
-      },
-      child: Scaffold(
-        appBar: AppBar(
+    return BotanicalBackground(
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (!didPop) navigateToHome();
+        },
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             tooltip: backTooltip,
@@ -941,6 +950,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
         ),
       ),
     ),
-  );
+  ),
+);
 }
 }

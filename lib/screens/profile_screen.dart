@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -114,8 +115,10 @@ class ProfileScreen extends ConsumerWidget {
         ? (lang == 'si' ? 'අමුත්තන්ගේ සැසියෙන් පිටවන්න' : (lang == 'ta' ? 'விருந்தினர் அமர்விலிருந்து வெளியேறு' : 'Exit Guest Session'))
         : (lang == 'si' ? 'පිටවන්න' : (lang == 'ta' ? 'வெளியேறவும்' : 'Sign Out'));
 
-    return Scaffold(
-      appBar: AppBar(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
         title: Text(appBarTitle),
       ),
       body: SafeArea(
@@ -298,6 +301,7 @@ class ProfileScreen extends ConsumerWidget {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }

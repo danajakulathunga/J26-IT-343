@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -96,8 +97,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
         title: const Text('Reset Password'),
       ),
       body: SafeArea(
@@ -206,6 +209,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           ),
         ),
       ),
-    );
+    ),
+  );
   }
 }

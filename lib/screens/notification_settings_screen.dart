@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bananaguard_ai/core/constants.dart';
@@ -133,8 +134,10 @@ class _NotificationSettingsScreenState
         ? 'මතක් කිරීම් ලැබෙන වේලාව තෝරන්න'
         : (lang == 'ta' ? 'நினைவூட்டல் பெற நேரத்தைத் தேர்ந்தெடுக்கவும்' : 'Tap to change reminder time');
 
-    return Scaffold(
-      appBar: AppBar(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
         title: Text(appBarTitle),
       ),
       body: SafeArea(
@@ -251,6 +254,7 @@ class _NotificationSettingsScreenState
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }

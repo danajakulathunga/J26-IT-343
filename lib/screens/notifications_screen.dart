@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -65,8 +66,10 @@ class NotificationsScreen extends ConsumerWidget {
       emptyMessage = 'நீங்கள் அனைத்து எச்சரிக்கைகளையும் படித்துவிட்டீர்கள்.';
     }
 
-    return Scaffold(
-      appBar: AppBar(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
         leading: BackButton(
           onPressed: () {
             if (context.canPop()) {
@@ -174,6 +177,7 @@ class NotificationsScreen extends ConsumerWidget {
                 },
               ),
       ),
-    );
+    ),
+  );
   }
 }

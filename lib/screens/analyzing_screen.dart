@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -254,8 +255,10 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
           : 'Running condition detection, severity estimation, and Grad-CAM explainability.';
     }
 
-    return Scaffold(
-      body: SafeArea(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -387,7 +390,8 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
           ),
         ),
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildErrorView(BuildContext context, ThemeData theme, ScanState state, String lang) {
@@ -405,8 +409,10 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
         ? 'ආපසු යන්න'
         : (lang == 'ta' ? 'பின்செல்க' : 'Back to Scan');
 
-    return Scaffold(
-      body: SafeArea(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 24),
@@ -493,6 +499,7 @@ class _AnalyzingScreenState extends ConsumerState<AnalyzingScreen>
           ),
         ),
       ),
-    );
+    ),
+  );
   }
 }

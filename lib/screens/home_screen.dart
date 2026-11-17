@@ -11,6 +11,7 @@ import 'package:bananaguard_ai/models/condition_info.dart';
 import 'package:bananaguard_ai/widgets/condition_card.dart';
 import 'package:bananaguard_ai/widgets/bottom_nav_bar.dart';
 import 'package:bananaguard_ai/widgets/welcome_card.dart';
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -91,7 +92,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final recentScans = historyState.scans.take(3).toList();
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(66),
         child: Container(
@@ -598,6 +601,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

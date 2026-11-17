@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -279,16 +280,18 @@ class _ScanCaptureScreenState extends ConsumerState<ScanCaptureScreen> {
         ? 'කෙසෙල් පළතුර තහවුරු විය'
         : (lang == 'ta' ? 'வாழைப்பழம் உறுதிப்படுத்தப்பட்டது' : 'Banana fruit confirmed');
 
-    return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          // Reset un-scanned image state when popping/exiting screen
-          ref.read(scanProvider.notifier).reset();
-        }
-      },
-      child: Scaffold(
-        appBar: AppBar(
+    return BotanicalBackground(
+      child: PopScope(
+        canPop: true,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) {
+            // Reset un-scanned image state when popping/exiting screen
+            ref.read(scanProvider.notifier).reset();
+          }
+        },
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
           title: Text(appBarTitle),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -437,6 +440,7 @@ class _ScanCaptureScreenState extends ConsumerState<ScanCaptureScreen> {
                 ),
         ),
       ),
-    );
+    ),
+  );
   }
 }

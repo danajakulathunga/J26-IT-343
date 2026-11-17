@@ -1,3 +1,4 @@
+import 'package:bananaguard_ai/widgets/botanical_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -267,8 +268,10 @@ class SettingsScreen extends ConsumerWidget {
     final privacyTileTitle = lang == 'si' ? 'පෞද්ගලිකත්වය සහ වියාචන සටහන' : (lang == 'ta' ? 'தனியுரிமை மற்றும் மறுப்பு குறிப்பு' : 'Privacy & Disclaimer Note');
     final privacyTileSub = lang == 'si' ? 'තීරණ සහායක භාවිත කොන්දේසි' : (lang == 'ta' ? 'முடிவு ஆதரவு பயன்பாட்டு விதிமுறைகள்' : 'Decision-support terms of use');
 
-    return Scaffold(
-      appBar: AppBar(
+    return BotanicalBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
         title: Text(appBarTitle),
       ),
       body: SafeArea(
@@ -351,6 +354,7 @@ class SettingsScreen extends ConsumerWidget {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }

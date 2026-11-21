@@ -342,6 +342,18 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   const Divider(height: 1),
                   ListTile(
+                    leading: const Icon(Icons.explore_outlined, color: AppConstants.primaryGreen),
+                    title: Text(lang == 'si'
+                        ? 'යෙදුමේ ප්‍රධාන විශේෂාංග සංචාරය'
+                        : (lang == 'ta' ? 'செயலி அம்சங்கள் வழிகாட்டி' : 'Feature Tour & Onboarding')),
+                    subtitle: Text(lang == 'si'
+                        ? 'පියවර 5 කින් යෙදුමේ හැකියාවන් නැරඹීම'
+                        : (lang == 'ta' ? 'முக்கிய அம்சங்களின் 5-திரை மேலோட்டம்' : '5-screen visual guide to BananaGuard AI')),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () => context.push('/feature-onboarding'),
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
                     leading: const Icon(Icons.privacy_tip_outlined, color: AppConstants.primaryGreen),
                     title: Text(privacyTileTitle),
                     subtitle: Text(privacyTileSub),

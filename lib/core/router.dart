@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:bananaguard_ai/screens/splash_screen.dart';
 import 'package:bananaguard_ai/screens/onboarding_language_screen.dart';
+import 'package:bananaguard_ai/screens/feature_onboarding_screen.dart';
 import 'package:bananaguard_ai/screens/auth_landing_screen.dart';
 import 'package:bananaguard_ai/screens/sign_in_screen.dart';
 import 'package:bananaguard_ai/screens/sign_up_screen.dart';
@@ -48,6 +49,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/onboarding-language',
       builder: (context, state) => const OnboardingLanguageScreen(),
+    ),
+    GoRoute(
+      path: '/feature-onboarding',
+      builder: (context, state) => const FeatureOnboardingScreen(),
     ),
     GoRoute(
       path: '/auth-landing',

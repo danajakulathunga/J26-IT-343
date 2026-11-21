@@ -47,9 +47,8 @@ class _OnboardingLanguageScreenState
   }
 
   Future<void> _onContinue() async {
-    await storageService.setFirstLaunchCompleted();
     if (mounted) {
-      context.go('/auth-landing');
+      context.go('/feature-onboarding');
     }
   }
 
